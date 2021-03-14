@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import org.d3if4203.hitungbmi.R
 import org.d3if4203.hitungbmi.databinding.FragmentHitungBinding
-private lateinit var binding: FragmentHitungBinding
 
+private lateinit var binding: FragmentHitungBinding
 class HitungFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
