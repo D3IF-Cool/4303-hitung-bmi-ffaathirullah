@@ -21,6 +21,12 @@
         <argument
             android:name="kategori"
             app:argType="org.d3if4203.hitungbmi.data.KategoriBmi" />
+        <argument
+            android:name="bBadan"
+            app:argType="integer" />
+        <argument
+            android:name="tBadan"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

@@ -13,6 +13,7 @@ import org.d3if4203.hitungbmi.data.KategoriBmi
 import org.d3if4203.hitungbmi.databinding.FragmentHitungBinding
 
 private lateinit var binding: FragmentHitungBinding
+
 private lateinit var kategoriBmi: KategoriBmi
 
 class HitungFragment : Fragment() {
@@ -23,7 +24,8 @@ class HitungFragment : Fragment() {
         binding.button.setOnClickListener { hitungBMI() }
         binding.btnReset.setOnClickListener{ resetBMI() }
         binding.saranButton.setOnClickListener {view: View ->
-            view.findNavController().navigate(HitungFragmentDirections.actionHitungFragmentToSaranFragment(kategoriBmi))
+            view.findNavController().navigate(HitungFragmentDirections.actionHitungFragmentToSaranFragment(kategoriBmi,
+                binding.beratEditText.text.toString().toInt(), binding.tinggiEditText.text.toString().toInt()))
         }
         binding.shareButton.setOnClickListener { shareData() }
         setHasOptionsMenu(true)
@@ -79,6 +81,8 @@ class HitungFragment : Fragment() {
                 else -> KategoriBmi.IDEAL
             }
         }
+
+
         val stringRes = when (kategoriBmi) {
             KategoriBmi.KURUS -> R.string.kurus
             KategoriBmi.IDEAL -> R.string.ideal

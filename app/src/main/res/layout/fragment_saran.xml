@@ -13,6 +13,21 @@
         android:layout_weight="1"
         android:contentDescription="@null"
         tools:src="@drawable/ideal" />
+
+    <TextView
+        android:id="@+id/bBadan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="bBadan" />
+
+    <TextView
+        android:id="@+id/tBadan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="tBadan" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -20,4 +35,10 @@
         android:gravity="center_horizontal"
         android:textSize="18sp"
         tools:text="@string/saran_ideal" />
+
+    <Button
+        android:id="@+id/share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bagikan" />
 </LinearLayout>
