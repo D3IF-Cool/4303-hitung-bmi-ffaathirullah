@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import org.d3if4203.hitungbmi.R
 import org.d3if4203.hitungbmi.databinding.FragmentHitungBinding
 
@@ -16,10 +17,12 @@ class HitungFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentHitungBinding.inflate(layoutInflater, container, false)
-        return binding.root
-
         binding.button.setOnClickListener { hitungBMI() }
         binding.btnReset.setOnClickListener{ resetBMI() }
+        binding.saranButton.setOnClickListener {view: View ->
+            view.findNavController().navigate(R.id.action_hitungFragment_to_saranFragment)
+        }
+        return binding.root
     }
 
     fun hitungBMI(){
@@ -45,7 +48,8 @@ class HitungFragment : Fragment() {
         val kategori =  getKategori(bmi, isMale)
 
        binding.bmiTextView.text = getString(R.string.bmi_x, bmi)
-        binding.kategoriTextView.text = getString(R.string.kategori_x, kategori)
+       binding.kategoriTextView.text = getString(R.string.kategori_x, kategori)
+       binding.saranButton.visibility =  View.VISIBLE
     }
 
     fun resetBMI(){
