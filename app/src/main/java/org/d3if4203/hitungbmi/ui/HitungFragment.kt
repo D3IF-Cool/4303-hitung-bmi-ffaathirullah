@@ -6,6 +6,8 @@ import android.text.TextUtils
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import org.d3if4203.hitungbmi.R
@@ -17,6 +19,7 @@ private lateinit var binding: FragmentHitungBinding
 private lateinit var kategoriBmi: KategoriBmi
 
 class HitungFragment : Fragment() {
+    private val viewModel: HitungViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -32,6 +35,17 @@ class HitungFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getHasilBmi().observe(viewLifecycleOwner) {
+            if (it == null) return@observe
+            binding.bmiTextView.text = getString(R.string.bmi_x, it.bmi)
+            binding.kategoriTextView.text = getString(R.string.kategori_x,
+                getKategori(it.kategori))
+            binding.buttonGroup.visibility = View.VISIBLE
+        }
+    }
+
     fun hitungBMI(){
         val berat = binding.beratEditText.text.toString()
         if (TextUtils.isEmpty(berat)) {
@@ -43,7 +57,6 @@ class HitungFragment : Fragment() {
             Toast.makeText(context, R.string.tinggi_invalid, Toast.LENGTH_LONG).show()
             return
         }
-        val tinggiCm = tinggi.toFloat() / 100
 
         val selectedId = binding.radioGroup.checkedRadioButtonId
         if (selectedId == -1) {
@@ -51,12 +64,8 @@ class HitungFragment : Fragment() {
             return
         }
         val isMale = selectedId == R.id.priaRadioButton
-        val bmi = berat.toFloat() / (tinggiCm * tinggiCm)
-        val kategori =  getKategori(bmi, isMale)
 
-       binding.bmiTextView.text = getString(R.string.bmi_x, bmi)
-       binding.kategoriTextView.text = getString(R.string.kategori_x, kategori)
-       binding.buttonGroup.visibility = View.VISIBLE
+        viewModel.hitungBmi(berat, tinggi, isMale)
     }
 
     fun resetBMI(){
@@ -67,23 +76,8 @@ class HitungFragment : Fragment() {
         binding.kategoriTextView.text = getString(R.string.kategori_x, "")
     }
 
-    fun getKategori(bmi:Float , isMale:Boolean): String{
-        kategoriBmi = if (isMale) {
-            when{
-                bmi < 20.5 -> KategoriBmi.KURUS
-                bmi >= 27.0 -> KategoriBmi.GEMUK
-                else -> KategoriBmi.IDEAL
-            }
-        }else{
-            when {
-                bmi < 18.5 -> KategoriBmi.KURUS
-                bmi >= 25.0 -> KategoriBmi.GEMUK
-                else -> KategoriBmi.IDEAL
-            }
-        }
-
-
-        val stringRes = when (kategoriBmi) {
+    private fun getKategori(kategori: KategoriBmi): String {
+        val stringRes = when (kategori) {
             KategoriBmi.KURUS -> R.string.kurus
             KategoriBmi.IDEAL -> R.string.ideal
             KategoriBmi.GEMUK -> R.string.gemuk
