@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/hitungFragment"
-        android:name="org.d3if4203.hitungbmi.ui.HitungFragment"
+        android:name="org.d3if4203.hitungbmi.ui.hitung.HitungFragment"
         android:label="HitungFragment" >
         <action
             android:id="@+id/action_hitungFragment_to_saranFragment"
@@ -21,12 +21,6 @@
         <argument
             android:name="kategori"
             app:argType="org.d3if4203.hitungbmi.data.KategoriBmi" />
-        <argument
-            android:name="bBadan"
-            app:argType="integer" />
-        <argument
-            android:name="tBadan"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

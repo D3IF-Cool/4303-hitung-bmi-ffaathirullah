@@ -15,20 +15,6 @@
         tools:src="@drawable/ideal" />
 
     <TextView
-        android:id="@+id/bBadan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="bBadan" />
-
-    <TextView
-        android:id="@+id/tBadan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="tBadan" />
-
-    <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

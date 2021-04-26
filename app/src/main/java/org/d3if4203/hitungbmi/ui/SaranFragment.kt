@@ -28,8 +28,6 @@ class SaranFragment : Fragment() {
 
     private fun updateUI(kategori: KategoriBmi){
         val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
-        binding.bBadan.text =  "Berat Badan :" + args.bBadan.toString()
-        binding.tBadan.text =  "Tinggi Badan :" + args.tBadan.toString()
 
         when(kategori){
             KategoriBmi.KURUS ->{
