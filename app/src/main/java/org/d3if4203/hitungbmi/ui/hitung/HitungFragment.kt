@@ -33,12 +33,12 @@ class HitungFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getNavigasi().observe(viewLifecycleOwner, {
+        viewModel.getNavigasi().observe(viewLifecycleOwner) {
             if (it == null) return@observe
             findNavController().navigate(HitungFragmentDirections
                 .actionHitungFragmentToSaranFragment(it))
             viewModel.selesaiNavigasi()
-        })
+        }
 
 
         viewModel.getHasilBmi().observe(viewLifecycleOwner) {
